@@ -1,4 +1,18 @@
 <template>
+  <div
+    class="flex justify-center items-center left-0 bottom-0 top-0 right-0 fixed"
+    v-if="TODO.msg.task_list_msg || TODO.msg.delete_msg"
+  >
+    <PopupNewTask class="z-40 my-auto" />
+    <DeleteTask class="z-40 my-auto" />
+    <div
+      class="bg-slate-600 w-screen h-screen fixed opacity-50"
+      @click="
+        TODO.msg.task_list_msg == false;
+        TODO.msg.delete_msg == false;
+      "
+    ></div>
+  </div>
   <div class="left-0 bottom-0 top-0 right-0 dark:bg-gray-700 w-screen h-screen">
     <nav
       class="bg-gray-50 dark:bg-gray-700 shadow-lg shadow-slate-300 dark:shadow-gray-800"
@@ -120,6 +134,8 @@
 import { RouterLink, RouterView } from "vue-router";
 import { useToDo } from "./stores/index.js";
 import Menu from "./components/Menu.vue";
+import PopupNewTask from "./components/PopupNewTask.vue";
+import DeleteTask from "./components/DeleteTask.vue";
 
 export default {
   data() {
@@ -135,6 +151,8 @@ export default {
   },
   components: {
     Menu,
+    PopupNewTask,
+    DeleteTask,
   },
   methods: {
     toggleDarkMode() {

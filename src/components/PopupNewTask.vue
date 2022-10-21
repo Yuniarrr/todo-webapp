@@ -1,5 +1,8 @@
 <template>
-  <div class="shadow-xl w-4/6 bg-slate-200 rounded-lg dark:bg-slate-300">
+  <div
+    class="shadow-xl w-4/6 bg-slate-200 rounded-lg dark:bg-slate-300"
+    :class="TODO.msg.task_list_msg ? '' : 'hidden'"
+  >
     <div class="mx-9 my-4">
       <div class="flex justify-between mb-4">
         <div class="flex items-center">
@@ -7,6 +10,7 @@
         </div>
         <div class="flex justify-end relative">
           <button
+            @click="TODO.toggleTaskListMsg()"
             class="hover:bg-slate-300 hover:shadow-lg hover:rounded-md dark:hover:bg-slate-400"
           >
             <svg
@@ -38,6 +42,7 @@
             aria-describedby="helper-text-explanation"
             class="col-span-6 my-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Add New Task"
+            v-model="TODO.todo.task_list.message"
           />
         </div>
         <div class="grid grid-cols-7 grid-flow-row my-1">
@@ -51,6 +56,7 @@
             rows="3"
             class="col-span-6 my-auto block p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Add Description"
+            v-model="TODO.todo.task_list.description"
           ></textarea>
         </div>
         <div class="grid grid-cols-7 grid-flow-row my-1">
@@ -70,7 +76,11 @@
                 class="text-gray-900 text-sm text-center inline-flex items-center px-4 py-2.5 dark:text-slate-400"
                 type="button"
               >
-                Choose Status
+                {{
+                  TODO.todo.task_list.status
+                    ? TODO.todo.task_list.status
+                    : "Select Status"
+                }}
               </button>
               <svg
                 class="mr-3 w-4 h-4 flex justify-end my-auto"
@@ -101,26 +111,51 @@
               aria-labelledby="dropdownDefault"
             >
               <li
+                @click="
+                  {
+                    (TODO.todo.task_list.status = 'To Do'), (showDropdown = false);
+                  }
+                "
                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 To Do
               </li>
               <li
+                @click="
+                  {
+                    (TODO.todo.task_list.status = 'Doing'), (showDropdown = false);
+                  }
+                "
                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Doing
               </li>
               <li
+                @click="
+                  {
+                    (TODO.todo.task_list.status = 'Done'), (showDropdown = false);
+                  }
+                "
                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                value="done"
               >
                 Done
+              </li>
+              <li
+                @click="
+                  {
+                    (TODO.todo.task_list.status = 'Other'), (showDropdown = false);
+                  }
+                "
+                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Other
               </li>
             </ul>
           </div>
         </div>
         <div class="mt-2 flex justify-end">
           <button
+            @click="TODO.addTaskList()"
             type="button"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >
@@ -133,11 +168,19 @@
 </template>
 
 <script>
+import { useToDo } from "../stores/index.js";
+
 export default {
   name: "NewTask",
   data() {
     return {
       showDropdown: false,
+    };
+  },
+  setup() {
+    const TODO = useToDo();
+    return {
+      TODO,
     };
   },
   methods: {

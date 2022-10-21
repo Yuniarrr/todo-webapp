@@ -6,34 +6,53 @@
       <div class="mb-2 flex pl-3 text-xl dark:text-white">ToDo List WebApp</div>
       <div class="flex flex-col">
         <RouterLink
+          @click="TODO.toggleActive('home')"
+          :class="TODO.settings.isActive.home == true ? 'bg-blue-200 font-medium' : ''"
           class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
           to="/"
           aria-current="page"
           >Home</RouterLink
         >
         <RouterLink
+          @click="TODO.toggleActive('category')"
+          :class="
+            TODO.settings.isActive.category == true ? 'bg-blue-200 font-medium' : ''
+          "
           class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
           to="/category"
           aria-current="page"
           >Category</RouterLink
         >
         <RouterLink
+          @click="TODO.toggleActive('check_list')"
+          :class="
+            TODO.settings.isActive.check_list == true ? 'bg-blue-200 font-medium' : ''
+          "
+          class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
+          to="/check-list"
+          aria-current="page"
+          >Check List</RouterLink
+        >
+        <RouterLink
+          @click="TODO.toggleActive('task_list')"
+          :class="
+            TODO.settings.isActive.task_list == true ? 'bg-blue-200 font-medium' : ''
+          "
           class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
           to="/task-list"
           aria-current="page"
           >Task List</RouterLink
         >
         <RouterLink
+          @click="TODO.toggleActive('weekly_list')"
+          :class="
+            TODO.settings.isActive.weekly_list == true ? 'bg-blue-200 font-medium' : ''
+          "
           class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
           to="/weekly-list"
           aria-current="page"
           >Weekly List</RouterLink
         >
-        <div
-          class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
-        >
-          Robocup
-        </div>
       </div>
       <!-- for toogle -->
       <!-- <div class="mt-1 pl-3">
@@ -67,7 +86,11 @@ export default {
     return {};
   },
   props: {},
-  methods: {},
+  methods: {
+    checkRouter() {
+      console.log(this.$route.path);
+    },
+  },
   setup() {
     const TODO = useToDo();
     return { TODO };

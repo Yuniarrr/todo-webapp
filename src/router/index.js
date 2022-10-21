@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('../views/CategoryView.vue')
     },
     {
+      path: '/check-list',
+      name: 'check-list',
+      component: () => import('../views/todo/CheckList.vue')
+    },
+    {
       path: '/task-list',
       name: 'task-list',
       component: () => import('../views/todo/TaskListView.vue')
