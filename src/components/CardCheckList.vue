@@ -2,7 +2,7 @@
   <div
     class="my-3 mx-1 px-4 py-3 drop-shadow-ls w-80 rounded-lg flex flex-col justify-start shadow-md dark:bg-slate-200 dark:hover:bg-slate-300"
   >
-    <div class="flex justify-between mb-3">
+    <div class="flex justify-between">
       <input
         type="text"
         autofocus
@@ -11,7 +11,9 @@
         v-model="TODO.todo.checklist.list[id_item - 1].title"
         required
         v-if="TODO.todo.checklist.list[id_item - 1].show_title == true"
-        @keydown.enter="TODO.todo.checklist.list[id_item - 1].show_title = false"
+        @keydown.enter="
+          TODO.todo.checklist.list[id_item - 1].show_title = false
+        "
         @focusout="TODO.todo.checklist.list[id_item - 1].show_title = false"
       />
       <p
@@ -41,6 +43,77 @@
         </svg>
       </div>
     </div>
+    <div>{{ TODO.todo.checklist.list[id_item - 1].category }}</div>
+    <div class="mb-1 mt-1 grid grid-flow-row grid-cols-4">
+      <i class="mb-1 text-sm col-span-1 font-medium">Category</i>
+      <i
+        class="mb-1 text-sm col-span-3 font-medium cursor-pointer"
+        @dblclick="showCategory = true"
+        v-if="showCategory == false"
+        >{{
+          TODO.todo.checklist.list[id_item - 1].category.length != 0
+            ? TODO.todo.checklist.list[id_item - 1].category
+            : "None"
+        }}</i
+      >
+      <div
+        class="col-span-3"
+        v-if="showCategory == true"
+        @click="showListCategory = !showListCategory"
+        @dblclick="showCategory = false && showListCategory == false"
+      >
+        <button
+          data-dropdown-toggle="dropdown"
+          class="w-full flex justify-between hover:bg-slate-100 focus:outline-none font-medium rounded-lg text-sm pl-3 text-center items-center dark:hover:bg-slate-100 dark:focus:ring-blue-300"
+          type="button"
+        >
+          <i class="text-sm" @click="closeCategory()">Choose Category</i>
+          <div>
+            <svg
+              class="w-4 h-4"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </div>
+        </button>
+      </div>
+      <div
+        class="col-span-4 flex flex-row justify-around flex-wrap"
+        v-if="showCategory == true && showListCategory == true"
+      >
+        <div v-for="(item, index) in TODO.category" :key="index">
+          <div
+            class="flex items-start"
+            @click="TODO.categoryCheckList(id_item - 1, item.name)"
+          >
+            <div class="flex items-center">
+              <input
+                :id="item.name"
+                type="checkbox"
+                :value="item.name"
+                class="flex items-center w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                required
+              />
+              <label
+                :for="item.name"
+                class="flex items-center justify-center ml-2 text-sm text-gray-900 dark:text-gray-300"
+                ><i>{{ item.name }}</i></label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div
       v-for="index in TODO.todo.checklist.list[id_item - 1].counter_items"
       :key="index"
@@ -68,6 +141,8 @@ export default {
   data() {
     return {
       CheckList: "Check List",
+      showCategory: false,
+      showListCategory: false,
     };
   },
   components: {
@@ -85,6 +160,13 @@ export default {
       required: true,
     },
   },
-  methods: {},
+  methods: {
+    closeCategory() {
+      if (this.showCategory == true && this.showListCategory == true) {
+        this.showCategory = false;
+        this.showListCategory = false;
+      }
+    },
+  },
 };
 </script>

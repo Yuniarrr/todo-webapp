@@ -7,7 +7,9 @@
       <div class="flex flex-col">
         <RouterLink
           @click="TODO.toggleActive('home')"
-          :class="TODO.settings.isActive.home == true ? 'bg-blue-200 font-medium' : ''"
+          :class="
+            TODO.settings.isActive.home == true ? 'bg-blue-200 font-medium' : ''
+          "
           class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
           to="/"
           aria-current="page"
@@ -16,7 +18,9 @@
         <RouterLink
           @click="TODO.toggleActive('category')"
           :class="
-            TODO.settings.isActive.category == true ? 'bg-blue-200 font-medium' : ''
+            TODO.settings.isActive.category == true
+              ? 'bg-blue-200 font-medium'
+              : ''
           "
           class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
           to="/category"
@@ -26,7 +30,9 @@
         <RouterLink
           @click="TODO.toggleActive('check_list')"
           :class="
-            TODO.settings.isActive.check_list == true ? 'bg-blue-200 font-medium' : ''
+            TODO.settings.isActive.check_list == true
+              ? 'bg-blue-200 font-medium'
+              : ''
           "
           class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
           to="/check-list"
@@ -36,7 +42,9 @@
         <RouterLink
           @click="TODO.toggleActive('task_list')"
           :class="
-            TODO.settings.isActive.task_list == true ? 'bg-blue-200 font-medium' : ''
+            TODO.settings.isActive.task_list == true
+              ? 'bg-blue-200 font-medium'
+              : ''
           "
           class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
           to="/task-list"
@@ -46,7 +54,9 @@
         <RouterLink
           @click="TODO.toggleActive('weekly_list')"
           :class="
-            TODO.settings.isActive.weekly_list == true ? 'bg-blue-200 font-medium' : ''
+            TODO.settings.isActive.weekly_list == true
+              ? 'bg-blue-200 font-medium'
+              : ''
           "
           class="cursor-pointer py-2 pl-6 hover:bg-slate-200 dark:text-white dark:hover:text-black"
           to="/weekly-list"

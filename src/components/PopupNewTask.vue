@@ -113,7 +113,8 @@
               <li
                 @click="
                   {
-                    (TODO.todo.task_list.status = 'To Do'), (showDropdown = false);
+                    (TODO.todo.task_list.status = 'To Do'),
+                      (showDropdown = false);
                   }
                 "
                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -123,7 +124,8 @@
               <li
                 @click="
                   {
-                    (TODO.todo.task_list.status = 'Doing'), (showDropdown = false);
+                    (TODO.todo.task_list.status = 'Doing'),
+                      (showDropdown = false);
                   }
                 "
                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -133,7 +135,8 @@
               <li
                 @click="
                   {
-                    (TODO.todo.task_list.status = 'Done'), (showDropdown = false);
+                    (TODO.todo.task_list.status = 'Done'),
+                      (showDropdown = false);
                   }
                 "
                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -143,7 +146,8 @@
               <li
                 @click="
                   {
-                    (TODO.todo.task_list.status = 'Other'), (showDropdown = false);
+                    (TODO.todo.task_list.status = 'Other'),
+                      (showDropdown = false);
                   }
                 "
                 class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"

@@ -26,6 +26,52 @@ export default {
   data() {
     return {
       CheckList: "Check List",
+      category: [
+        {
+          id: 0,
+          name: "Education",
+        },
+        {
+          id: 1,
+          name: "Entertainment",
+        },
+        {
+          id: 2,
+          name: "Finance",
+        },
+        {
+          id: 3,
+          name: "Health",
+        },
+        {
+          id: 4,
+          name: "Learn",
+        },
+        {
+          id: 5,
+          name: "Meeting",
+        },
+        {
+          id: 6,
+          name: "Schedule",
+        },
+        {
+          id: 7,
+          name: "School",
+        },
+        {
+          id: 8,
+          name: "Shopping",
+        },
+        {
+          id: 9,
+          name: "Work",
+        },
+        {
+          id: 10,
+          name: "Other",
+        },
+      ],
     };
   },
   components: {
