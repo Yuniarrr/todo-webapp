@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-import { } from "firebase/firestore";
+import {} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,7 +12,7 @@ const firebaseConfig = {
   projectId: "try-vue-92d54",
   storageBucket: "try-vue-92d54.appspot.com",
   messagingSenderId: "462401837028",
-  appId: "1:462401837028:web:06e4fd0293f666de2f99f1"
+  appId: "1:462401837028:web:06e4fd0293f666de2f99f1",
 };
 
 // Initialize Firebase

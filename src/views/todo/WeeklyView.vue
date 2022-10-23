@@ -22,8 +22,15 @@
           <div v-if="TODO.todo.weekly.list_day.monday.length == 0">
             <p class="ml-3 italic text-slate-600 font-medium">None</p>
           </div>
-          <div v-for="(item, index) in TODO.todo.weekly.list_day.monday" :key="index">
-            <AddNewWeeklyList :id_item="item.id" :message="item.message" :day="monday" />
+          <div
+            v-for="(item, index) in TODO.todo.weekly.list_day.monday"
+            :key="index"
+          >
+            <AddNewWeeklyList
+              :id_item="item.id"
+              :message="item.message"
+              :day="monday"
+            />
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit">
@@ -39,8 +46,15 @@
           <div v-if="TODO.todo.weekly.list_day.tuesday.length == 0">
             <p class="ml-3 italic text-slate-600 font-medium">None</p>
           </div>
-          <div v-for="(item, index) in TODO.todo.weekly.list_day.tuesday" :key="index">
-            <AddNewWeeklyList :id_item="item.id" :message="item.message" :day="tuesday" />
+          <div
+            v-for="(item, index) in TODO.todo.weekly.list_day.tuesday"
+            :key="index"
+          >
+            <AddNewWeeklyList
+              :id_item="item.id"
+              :message="item.message"
+              :day="tuesday"
+            />
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit">
@@ -56,7 +70,10 @@
           <div v-if="TODO.todo.weekly.list_day.wednesday.length == 0">
             <p class="ml-3 italic text-slate-600 font-medium">None</p>
           </div>
-          <div v-for="(item, index) in TODO.todo.weekly.list_day.wednesday" :key="index">
+          <div
+            v-for="(item, index) in TODO.todo.weekly.list_day.wednesday"
+            :key="index"
+          >
             <AddNewWeeklyList
               :id_item="item.id"
               :message="item.message"
@@ -77,7 +94,10 @@
           <div v-if="TODO.todo.weekly.list_day.thursday.length == 0">
             <p class="ml-3 italic text-slate-600 font-medium">None</p>
           </div>
-          <div v-for="(item, index) in TODO.todo.weekly.list_day.thursday" :key="index">
+          <div
+            v-for="(item, index) in TODO.todo.weekly.list_day.thursday"
+            :key="index"
+          >
             <AddNewWeeklyList
               :id_item="item.id"
               :message="item.message"
@@ -100,8 +120,15 @@
           <div v-if="TODO.todo.weekly.list_day.friday.length == 0">
             <p class="ml-3 italic text-slate-600 font-medium">None</p>
           </div>
-          <div v-for="(item, index) in TODO.todo.weekly.list_day.friday" :key="index">
-            <AddNewWeeklyList :id_item="item.id" :message="item.message" :day="friday" />
+          <div
+            v-for="(item, index) in TODO.todo.weekly.list_day.friday"
+            :key="index"
+          >
+            <AddNewWeeklyList
+              :id_item="item.id"
+              :message="item.message"
+              :day="friday"
+            />
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit">
@@ -117,7 +144,10 @@
           <div v-if="TODO.todo.weekly.list_day.saturday.length == 0">
             <p class="ml-3 italic text-slate-600 font-medium">None</p>
           </div>
-          <div v-for="(item, index) in TODO.todo.weekly.list_day.saturday" :key="index">
+          <div
+            v-for="(item, index) in TODO.todo.weekly.list_day.saturday"
+            :key="index"
+          >
             <AddNewWeeklyList
               :id_item="item.id"
               :message="item.message"
@@ -138,8 +168,15 @@
           <div v-if="TODO.todo.weekly.list_day.sunday.length == 0">
             <p class="ml-3 italic text-slate-600 font-medium">None</p>
           </div>
-          <div v-for="(item, index) in TODO.todo.weekly.list_day.sunday" :key="index">
-            <AddNewWeeklyList :id_item="item.id" :message="item.message" :day="sunday" />
+          <div
+            v-for="(item, index) in TODO.todo.weekly.list_day.sunday"
+            :key="index"
+          >
+            <AddNewWeeklyList
+              :id_item="item.id"
+              :message="item.message"
+              :day="sunday"
+            />
           </div>
         </div>
       </div>

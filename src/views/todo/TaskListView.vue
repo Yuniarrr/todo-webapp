@@ -61,7 +61,9 @@
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit dark:bg-slate-200">
-          <p class="text-rose-600 bg-rose-200 w-fit px-1 rounded-md font-medium mb-4">
+          <p
+            class="text-rose-600 bg-rose-200 w-fit px-1 rounded-md font-medium mb-4"
+          >
             Other
           </p>
           <div

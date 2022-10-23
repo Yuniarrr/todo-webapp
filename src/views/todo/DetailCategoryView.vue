@@ -7,14 +7,18 @@
       >
         Task List
       </h1>
-      <h1 class="text-3xl mb-3 font-medium dark:text-white">&nbsp;&nbsp;>&nbsp;&nbsp;</h1>
+      <h1 class="text-3xl mb-3 font-medium dark:text-white">
+        &nbsp;&nbsp;>&nbsp;&nbsp;
+      </h1>
       <HeaderMenu
         :title="DetailTaskList[0].toUpperCase() + DetailTaskList.substring(1)"
       />
     </div>
     <div class="-mt-3">
       <div class="my-3">
-        <h1 class="font-medium text-xl border-b-4 dark:text-white">Check List</h1>
+        <h1 class="font-medium text-xl border-b-4 dark:text-white">
+          Check List
+        </h1>
         <!-- <h1>{{ TODO.detail_category_item.check_list }}</h1> -->
         <div
           v-for="(item, index) in TODO.detail_category_item.check_list"
@@ -33,7 +37,9 @@
             </div>
             <div class="mt-1 grid grid-flow-row grid-cols-4 cursor-default">
               <i class="text-xs col-span-1 font-medium">Category</i>
-              <i class="text-xs col-span-3 font-medium">{{ item.category.join(", ") }}</i>
+              <i class="text-xs col-span-3 font-medium">{{
+                item.category.join(", ")
+              }}</i>
             </div>
             <div class="my-1" v-for="(list, index) in item.items" :key="index">
               <!-- {{ list.title_item }} -->
@@ -60,7 +66,9 @@
         </div>
       </div>
       <div class="my-3">
-        <h1 class="font-medium text-xl border-b-4 dark:text-white">Task List</h1>
+        <h1 class="font-medium text-xl border-b-4 dark:text-white">
+          Task List
+        </h1>
         <h1>{{ TODO.detail_category_item.task_list.todo }}</h1>
         <div
           class="grid grid-cols-4 gap-4 grid-flow-row my-3 mx-1 px-4 py-3 drop-shadow-ls rounded-lg shadow-md dark:bg-slate-200 dark:hover:bg-slate-300"
@@ -75,7 +83,8 @@
             </p>
             <ul class="space-y-1 max-w-md list-disc list-inside">
               <li
-                v-for="(item, index) in TODO.detail_category_item.task_list.todo"
+                v-for="(item, index) in TODO.detail_category_item.task_list
+                  .todo"
                 :key="index"
               >
                 {{ item.message }}
@@ -92,7 +101,8 @@
             </p>
             <ul class="space-y-1 max-w-md list-disc list-inside">
               <li
-                v-for="(item, index) in TODO.detail_category_item.task_list.doing"
+                v-for="(item, index) in TODO.detail_category_item.task_list
+                  .doing"
                 :key="index"
               >
                 {{ item.message }}
@@ -109,7 +119,8 @@
             </p>
             <ul class="space-y-1 max-w-md list-disc list-inside">
               <li
-                v-for="(item, index) in TODO.detail_category_item.task_list.done"
+                v-for="(item, index) in TODO.detail_category_item.task_list
+                  .done"
                 :key="index"
               >
                 {{ item.message }}
@@ -126,7 +137,8 @@
             </p>
             <ul class="space-y-1 max-w-md list-disc list-inside">
               <li
-                v-for="(item, index) in TODO.detail_category_item.task_list.other"
+                v-for="(item, index) in TODO.detail_category_item.task_list
+                  .other"
                 :key="index"
               >
                 {{ item.message }}
@@ -152,7 +164,9 @@
           </div>
         </div>
         <div class="my-3"></div>
-        <h1 class="font-medium text-xl border-b-4 dark:text-white">Weekly List</h1>
+        <h1 class="font-medium text-xl border-b-4 dark:text-white">
+          Weekly List
+        </h1>
       </div>
     </div>
   </div>

@@ -1,7 +1,9 @@
 <template>
   <div
     class="flex justify-center items-center left-0 bottom-0 top-0 right-0 fixed"
-    v-if="TODO.msg.task_list_msg || TODO.msg.delete_msg || TODO.msg.weekly_list_msg"
+    v-if="
+      TODO.msg.task_list_msg || TODO.msg.delete_msg || TODO.msg.weekly_list_msg
+    "
   >
     <PopupNewTask class="z-40 my-auto" />
     <DeleteTask class="z-40 my-auto" />
@@ -19,7 +21,9 @@
     <nav
       class="w-full top-0 bg-gray-50 dark:bg-gray-700 shadow-lg shadow-slate-300 dark:shadow-gray-800"
     >
-      <div class="py-3 px-4 mx-auto max-w-screen-xl md:px-6 flex justify-between">
+      <div
+        class="py-3 px-4 mx-auto max-w-screen-xl md:px-6 flex justify-between"
+      >
         <div class="flex items-center">
           <button
             data-collapse-toggle="navbar-sticky"
@@ -61,7 +65,9 @@
               >
             </li>
             <li>
-              <a href="#" class="text-gray-900 dark:text-white hover:underline">Team</a>
+              <a href="#" class="text-gray-900 dark:text-white hover:underline"
+                >Team</a
+              >
             </li>
             <li>
               <a href="#" class="text-gray-900 dark:text-white hover:underline"

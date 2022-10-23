@@ -94,7 +94,11 @@
             >Category</label
           >
           <div class="flex flex-wrap flex-row my-1 col-span-6">
-            <div v-for="(item, index) in TODO.category" :key="index" class="mt-1">
+            <div
+              v-for="(item, index) in TODO.category"
+              :key="index"
+              class="mt-1"
+            >
               <div class="flex">
                 <div class="flex items-center mr-4">
                   <input

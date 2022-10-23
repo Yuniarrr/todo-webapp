@@ -115,7 +115,10 @@
         </div>
       </div>
     </div>
-    <div v-for="index in TODO.todo.checklist.list[id_item - 1].items.length" :key="index">
+    <div
+      v-for="index in TODO.todo.checklist.list[id_item - 1].items.length"
+      :key="index"
+    >
       <AddNewCheckList :id_item="id_item - 1" :id_new_task="index - 1" />
     </div>
     <div class="my-1" @click="TODO.addTCL(id_item - 1)">
