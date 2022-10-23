@@ -3,8 +3,16 @@ CHECK LIST
     show_title_item in check_list.items
     counter_items in check_list -> save in localStorage
     show_title in check_list
+    save darkMode in localStorage
+
+# FIX
+    checkbox in all vue
+        - detail weekly by day -> category
 
 ALL
 # BUG
     bug in counter ? ALL
     - for counter, getLastId in collection
+
+    bug in temp.detail_weekly_day
+    - save in localStorage

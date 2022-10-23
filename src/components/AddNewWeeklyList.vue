@@ -2,7 +2,7 @@
   <div
     class="my-2 rounded-lg border-2 px-3 py-1 text-base cursor-pointer hover:bg-sky-100"
     v-if="id_item != null"
-    @dblclick="TODO.gotoDetailWeek(id_item)"
+    @dblclick="TODO.gotoDetailWeek(id_item, day)"
   >
     <div class="flex justify-between">
       <div>{{ message }} || {{ id_item }} || {{ day }}</div>

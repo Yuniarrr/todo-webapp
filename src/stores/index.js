@@ -95,7 +95,18 @@ export const useToDo = defineStore({
         done: [],
         other: [],
       },
-      weekly_list: [],
+      weekly_list: {
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+        sunday: [],
+      },
+    },
+    temp: {
+      detail_weekly_day: "",
     },
     category: [
       {
@@ -414,6 +425,35 @@ export const useToDo = defineStore({
         }
       });
     },
+    async getCategoryWeeklyList(category) {
+      category = category[0].toUpperCase() + category.substring(1);
+      const querySnapshot = await getDocs(collection(db, "weekly_list"));
+      querySnapshot.forEach((doc) => {
+        if (doc.data().category.includes(category)) {
+          if (doc.data().day.includes("Monday")) {
+            this.detail_category_item.weekly_list.monday.push(doc.data());
+          }
+          if (doc.data().day.includes("Tuesday")) {
+            this.detail_category_item.weekly_list.tuesday.push(doc.data());
+          }
+          if (doc.data().day.includes("Wednesday")) {
+            this.detail_category_item.weekly_list.wednesday.push(doc.data());
+          }
+          if (doc.data().day.includes("Thursday")) {
+            this.detail_category_item.weekly_list.thursday.push(doc.data());
+          }
+          if (doc.data().day.includes("Friday")) {
+            this.detail_category_item.weekly_list.friday.push(doc.data());
+          }
+          if (doc.data().day.includes("Saturday")) {
+            this.detail_category_item.weekly_list.saturday.push(doc.data());
+          }
+          if (doc.data().day.includes("Sunday")) {
+            this.detail_category_item.weekly_list.sunday.push(doc.data());
+          }
+        }
+      });
+    },
 
     // *
     // * ALL EDIT
@@ -471,6 +511,72 @@ export const useToDo = defineStore({
         status: task_list.status,
         category: task_list.category,
       });
+    },
+    async updateWeeklyList(id_item, day) {
+      if (day == "Monday") {
+        let weekly_list = this.todo.weekly.list_day.monday[id_item];
+        let id = weekly_list.id;
+        await updateDoc(doc(db, "weekly_list", id.toString()), {
+          message: weekly_list.message,
+          description: weekly_list.description,
+          day: weekly_list.day,
+          category: weekly_list.category,
+        });
+      } else if (day == "Tuesday") {
+        let weekly_list = this.todo.weekly.list_day.tuesday[id_item];
+        let id = weekly_list.id;
+        await updateDoc(doc(db, "weekly_list", id.toString()), {
+          message: weekly_list.message,
+          description: weekly_list.description,
+          day: weekly_list.day,
+          category: weekly_list.category,
+        });
+      } else if (day == "Wednesday") {
+        let weekly_list = this.todo.weekly.list_day.wednesday[id_item];
+        let id = weekly_list.id;
+        await updateDoc(doc(db, "weekly_list", id.toString()), {
+          message: weekly_list.message,
+          description: weekly_list.description,
+          day: weekly_list.day,
+          category: weekly_list.category,
+        });
+      } else if (day == "Thursday") {
+        let weekly_list = this.todo.weekly.list_day.thursday[id_item];
+        let id = weekly_list.id;
+        await updateDoc(doc(db, "weekly_list", id.toString()), {
+          message: weekly_list.message,
+          description: weekly_list.description,
+          day: weekly_list.day,
+          category: weekly_list.category,
+        });
+      } else if (day == "Friday") {
+        let weekly_list = this.todo.weekly.list_day.friday[id_item];
+        let id = weekly_list.id;
+        await updateDoc(doc(db, "weekly_list", id.toString()), {
+          message: weekly_list.message,
+          description: weekly_list.description,
+          day: weekly_list.day,
+          category: weekly_list.category,
+        });
+      } else if (day == "Saturday") {
+        let weekly_list = this.todo.weekly.list_day.saturday[id_item];
+        let id = weekly_list.id;
+        await updateDoc(doc(db, "weekly_list", id.toString()), {
+          message: weekly_list.message,
+          description: weekly_list.description,
+          day: weekly_list.day,
+          category: weekly_list.category,
+        });
+      } else if (day == "Sunday") {
+        let weekly_list = this.todo.weekly.list_day.sunday[id_item];
+        let id = weekly_list.id;
+        await updateDoc(doc(db, "weekly_list", id.toString()), {
+          message: weekly_list.message,
+          description: weekly_list.description,
+          day: weekly_list.day,
+          category: weekly_list.category,
+        });
+      }
     },
     editTitleTCL(id_item) {
       this.todo.checklist.list[id_item].show_title = true;
@@ -653,8 +759,12 @@ export const useToDo = defineStore({
     gotoCategory(category) {
       this.router.push("/category/" + category);
     },
-    gotoDetailWeek(id_item) {
+    gotoDetailWeek(id_item, day) {
       this.router.push("/weekly-list/" + id_item);
+      this.temp.detail_weekly_day = day;
+    },
+    gotoWeeklyList() {
+      this.router.push("/weekly-list");
     },
   },
 });
