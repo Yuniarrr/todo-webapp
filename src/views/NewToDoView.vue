@@ -10,7 +10,7 @@ import HeaderMenu from "../components/HeaderMenu.vue";
 export default {
   data() {
     return {
-      ToDo: "To Do",
+      ToDo: "todo",
     };
   },
   components: {

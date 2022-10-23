@@ -1,25 +1,25 @@
 <template>
   <div
     class="flex justify-center items-center left-0 bottom-0 top-0 right-0 fixed"
-    v-if="TODO.msg.task_list_msg || TODO.msg.delete_msg"
+    v-if="TODO.msg.task_list_msg || TODO.msg.delete_msg || TODO.msg.weekly_list_msg"
   >
     <PopupNewTask class="z-40 my-auto" />
     <DeleteTask class="z-40 my-auto" />
+    <PopupNewWeekly class="z-40 my-auto" />
     <div
       class="bg-slate-600 w-screen h-screen fixed opacity-50"
       @click="
         TODO.msg.task_list_msg == false;
         TODO.msg.delete_msg == false;
+        TODO.msg.weekly_list_msg == false;
       "
     ></div>
   </div>
   <div class="left-0 bottom-0 top-0 right-0 dark:bg-gray-700 w-screen h-screen">
     <nav
-      class="bg-gray-50 dark:bg-gray-700 shadow-lg shadow-slate-300 dark:shadow-gray-800"
+      class="w-full top-0 bg-gray-50 dark:bg-gray-700 shadow-lg shadow-slate-300 dark:shadow-gray-800"
     >
-      <div
-        class="py-3 px-4 mx-auto max-w-screen-xl md:px-6 flex justify-between"
-      >
+      <div class="py-3 px-4 mx-auto max-w-screen-xl md:px-6 flex justify-between">
         <div class="flex items-center">
           <button
             data-collapse-toggle="navbar-sticky"
@@ -61,9 +61,7 @@
               >
             </li>
             <li>
-              <a href="#" class="text-gray-900 dark:text-white hover:underline"
-                >Team</a
-              >
+              <a href="#" class="text-gray-900 dark:text-white hover:underline">Team</a>
             </li>
             <li>
               <a href="#" class="text-gray-900 dark:text-white hover:underline"
@@ -140,6 +138,7 @@ import { useToDo } from "./stores/index.js";
 import Menu from "./components/Menu.vue";
 import PopupNewTask from "./components/PopupNewTask.vue";
 import DeleteTask from "./components/DeleteTask.vue";
+import PopupNewWeekly from "./components/PopupNewWeekly.vue";
 
 export default {
   data() {
@@ -157,6 +156,16 @@ export default {
     Menu,
     PopupNewTask,
     DeleteTask,
+    PopupNewWeekly,
+  },
+  mounted() {
+    this.TODO.getCheckList();
+    this.TODO.getTaskList();
+    this.TODO.getToDoTaskList();
+    this.TODO.getDoingTaskList();
+    this.TODO.getDoneTaskList();
+    this.TODO.getOtherTaskList();
+    this.TODO.getWeeklyList();
   },
   methods: {
     toggleDarkMode() {

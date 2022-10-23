@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import("../views/CategoryView.vue"),
     },
     {
+      path: "/category/:id",
+      name: "detail-category",
+      component: () => import("../views/todo/DetailCategoryView.vue"),
+    },
+    {
       path: "/check-list",
       name: "check-list",
       component: () => import("../views/todo/CheckList.vue"),
@@ -38,6 +43,11 @@ const router = createRouter({
       path: "/weekly-list",
       name: "weekly-list",
       component: () => import("../views/todo/WeeklyView.vue"),
+    },
+    {
+      path: "/weekly-list/:id",
+      name: "detail-weekly-list",
+      component: () => import("../views/todo/DetailWeeklyList.vue"),
     },
     {
       path: "/:catchAll(.*)",

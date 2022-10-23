@@ -1,0 +1,10 @@
+CHECK LIST
+# TODO
+    show_title_item in check_list.items
+    counter_items in check_list -> save in localStorage
+    show_title in check_list
+
+ALL
+# BUG
+    bug in counter ? ALL
+    - for counter, getLastId in collection

@@ -21,8 +21,9 @@
           >
             No Task
           </div>
-          <div v-for="(item, index) in todo.length" :key="index">
-            <AddNewTaskList :id_item="todo[index]" />
+          <div v-for="(item, index) in TODO.todo.task_list.todo" :key="index">
+            <AddNewTaskList :id_item="item.id" :message="item.message" />
+            <!-- {{ item.id }} -->
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit dark:bg-slate-200">
@@ -37,8 +38,9 @@
           >
             No Task
           </div>
-          <div v-for="(item, index) in doing.length" :key="index">
-            <AddNewTaskList :id_item="doing[index]" />
+          <div v-for="(item, index) in TODO.todo.task_list.doing" :key="index">
+            <AddNewTaskList :id_item="item.id" :message="item.message" />
+            <!-- {{ item.id }} -->
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit dark:bg-slate-200">
@@ -53,14 +55,13 @@
           >
             No Task
           </div>
-          <div v-for="(item, index) in done.length" :key="index">
-            <AddNewTaskList :id_item="done[index]" />
+          <div v-for="(item, index) in TODO.todo.task_list.done" :key="index">
+            <AddNewTaskList :id_item="item.id" :message="item.message" />
+            <!-- {{ item.id }} -->
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit dark:bg-slate-200">
-          <p
-            class="text-rose-600 bg-rose-200 w-fit px-1 rounded-md font-medium mb-4"
-          >
+          <p class="text-rose-600 bg-rose-200 w-fit px-1 rounded-md font-medium mb-4">
             Other
           </p>
           <div
@@ -69,8 +70,9 @@
           >
             No Task
           </div>
-          <div v-for="(item, index) in other.length" :key="index">
-            <AddNewTaskList :id_item="other[index]" />
+          <div v-for="(item, index) in TODO.todo.task_list.other" :key="index">
+            <AddNewTaskList :id_item="item.id" :message="item.message" />
+            <!-- {{ item.id }} -->
           </div>
         </div>
       </div>
@@ -121,34 +123,34 @@ export default {
     HeaderMenu,
     AddNewTaskList,
   },
-  watch: {
-    "TODO.todo.task_list.list": {
-      handler() {
-        let self = this.TODO.todo.task_list;
-        let list = self.list;
-        for (let i = 0; i < list.length; i++) {
-          if (list[i].status == "To Do") {
-            if (self.todo.includes(list[i].id) == false) {
-              self.todo.push(list[i].id);
-            }
-          } else if (list[i].status == "Doing") {
-            if (self.doing.includes(list[i].id) == false) {
-              self.doing.push(list[i].id);
-            }
-          } else if (list[i].status == "Done") {
-            if (self.done.includes(list[i].id) == false) {
-              self.done.push(list[i].id);
-            }
-          } else if (list[i].status == "Other") {
-            if (self.other.includes(list[i].id) == false) {
-              self.other.push(list[i].id);
-            }
-          }
-          console.log(this.todo);
-        }
-      },
-      deep: true,
-    },
-  },
+  // watch: {
+  //   "TODO.todo.task_list.list": {
+  //     handler() {
+  //       let self = this.TODO.todo.task_list;
+  //       let list = self.list;
+  //       for (let i = 0; i < list.length; i++) {
+  //         if (list[i].status == "todo") {
+  //           if (self.todo.includes(list[i].id) == false) {
+  //             self.todo.push(list[i].id);
+  //           }
+  //         } else if (list[i].status == "doing") {
+  //           if (self.doing.includes(list[i].id) == false) {
+  //             self.doing.push(list[i].id);
+  //           }
+  //         } else if (list[i].status == "done") {
+  //           if (self.done.includes(list[i].id) == false) {
+  //             self.done.push(list[i].id);
+  //           }
+  //         } else if (list[i].status == "other") {
+  //           if (self.other.includes(list[i].id) == false) {
+  //             self.other.push(list[i].id);
+  //           }
+  //         }
+  //         console.log(this.todo);
+  //       }
+  //     },
+  //     deep: true,
+  //   },
+  // },
 };
 </script>

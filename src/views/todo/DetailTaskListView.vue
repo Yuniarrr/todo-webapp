@@ -7,9 +7,7 @@
       >
         Task List
       </h1>
-      <h1 class="text-3xl mb-3 font-medium dark:text-white">
-        &nbsp;&nbsp;>&nbsp;&nbsp;
-      </h1>
+      <h1 class="text-3xl mb-3 font-medium dark:text-white">&nbsp;&nbsp;>&nbsp;&nbsp;</h1>
       <HeaderMenu :title="DetailTaskList" />
     </div>
     <div>
@@ -56,7 +54,7 @@
               class="text-gray-900 text-sm text-center inline-flex items-center px-4 py-2.5 dark:text-slate-400"
               type="button"
             >
-              {{ TODO.todo.task_list.list[id_item].status }}
+              {{ returnStatus(TODO.todo.task_list.list[id_item].status) }}
             </button>
             <svg
               class="mr-3 w-4 h-4 flex justify-end my-auto"
@@ -89,7 +87,7 @@
             <li
               @click="
                 {
-                  (TODO.todo.task_list.list[id_item].status = 'To Do'),
+                  (TODO.todo.task_list.list[id_item].status = 'todo'),
                     (showDropdown = false);
                 }
               "
@@ -100,7 +98,7 @@
             <li
               @click="
                 {
-                  (TODO.todo.task_list.list[id_item].status = 'Doing'),
+                  (TODO.todo.task_list.list[id_item].status = 'doing'),
                     (showDropdown = false);
                 }
               "
@@ -111,7 +109,7 @@
             <li
               @click="
                 {
-                  (TODO.todo.task_list.list[id_item].status = 'Done'),
+                  (TODO.todo.task_list.list[id_item].status = 'done'),
                     (showDropdown = false);
                 }
               "
@@ -122,7 +120,7 @@
             <li
               @click="
                 {
-                  (TODO.todo.task_list.list[id_item].status = 'Other'),
+                  (TODO.todo.task_list.list[id_item].status = 'other'),
                     (showDropdown = false);
                 }
               "
@@ -133,10 +131,33 @@
           </ul>
         </div>
       </div>
+      <div class="mb-6 flex flex-wrap">
+        <div v-for="(item, index) in TODO.category" :key="index">
+          <div class="flex items-start mx-2">
+            <div class="flex items-center">
+              <input
+                :id="item.name"
+                :name="item.name"
+                v-model="TODO.todo.task_list.list[id_item].category"
+                type="checkbox"
+                :value="item.name"
+                :checked="TODO.todo.task_list.list[id_item].category.includes(item.name)"
+                class="flex items-center w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                required
+              />
+              <label
+                :for="item.name"
+                class="flex items-center justify-center ml-2 text-sm text-gray-900 dark:text-gray-300"
+                ><i>{{ item.name }}</i></label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="flex justify-end">
       <button
-        @click="TODO.saveTaskList()"
+        @click="TODO.saveTaskList(), TODO.updateTaskList(id_item)"
         type="button"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
       >
@@ -170,6 +191,17 @@ export default {
   methods: {
     goToTaskList() {
       this.$router.push("/task-list");
+    },
+    returnStatus(status) {
+      if (status == "todo") {
+        return "To Do";
+      } else if (status == "doing") {
+        return "Doing";
+      } else if (status == "done") {
+        return "Done";
+      } else if (status == "other") {
+        return "Other";
+      }
     },
     toggleDropdown() {
       this.showDropdown = !this.showDropdown;

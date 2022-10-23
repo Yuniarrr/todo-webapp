@@ -12,12 +12,13 @@
         required
         v-if="TODO.todo.checklist.list[id_item - 1].show_title == true"
         @keydown.enter="
-          TODO.todo.checklist.list[id_item - 1].show_title = false
+          (TODO.todo.checklist.list[id_item - 1].show_title = false),
+            TODO.updateTitleTCL(id_item - 1)
         "
         @focusout="TODO.todo.checklist.list[id_item - 1].show_title = false"
       />
       <p
-        @dblclick="TODO.editTaskCheckListCounter(id_item - 1)"
+        @dblclick="TODO.editTitleTCL(id_item - 1)"
         v-if="TODO.todo.checklist.list[id_item - 1].show_title == false"
         class="text-xl w-full font-medium border-b-4 flex items-center dark:border-b-4 dark:border-slate-500 cursor-pointer"
       >
@@ -43,16 +44,15 @@
         </svg>
       </div>
     </div>
-    <div>{{ TODO.todo.checklist.list[id_item - 1].category }}</div>
     <div class="mb-1 mt-1 grid grid-flow-row grid-cols-4">
-      <i class="mb-1 text-sm col-span-1 font-medium">Category</i>
+      <i class="mb-1 text-xs col-span-1 font-medium">Category</i>
       <i
-        class="mb-1 text-sm col-span-3 font-medium cursor-pointer"
+        class="mb-1 text-xs col-span-3 font-medium cursor-pointer"
         @dblclick="showCategory = true"
         v-if="showCategory == false"
         >{{
           TODO.todo.checklist.list[id_item - 1].category.length != 0
-            ? TODO.todo.checklist.list[id_item - 1].category
+            ? TODO.todo.checklist.list[id_item - 1].category.join(", ")
             : "None"
         }}</i
       >
@@ -60,7 +60,10 @@
         class="col-span-3"
         v-if="showCategory == true"
         @click="showListCategory = !showListCategory"
-        @dblclick="showCategory = false && showListCategory == false"
+        @dblclick="
+          (showCategory = false && showListCategory == false),
+            TODO.updateCategoryTCL(id_item - 1)
+        "
       >
         <button
           data-dropdown-toggle="dropdown"
@@ -92,13 +95,11 @@
         v-if="showCategory == true && showListCategory == true"
       >
         <div v-for="(item, index) in TODO.category" :key="index">
-          <div
-            class="flex items-start"
-            @click="TODO.categoryCheckList(id_item - 1, item.name)"
-          >
+          <div class="flex items-start">
             <div class="flex items-center">
               <input
                 :id="item.name"
+                v-model="TODO.todo.checklist.list[id_item - 1].category"
                 type="checkbox"
                 :value="item.name"
                 class="flex items-center w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
@@ -114,13 +115,10 @@
         </div>
       </div>
     </div>
-    <div
-      v-for="index in TODO.todo.checklist.list[id_item - 1].counter_items"
-      :key="index"
-    >
+    <div v-for="index in TODO.todo.checklist.list[id_item - 1].items.length" :key="index">
       <AddNewCheckList :id_item="id_item - 1" :id_new_task="index - 1" />
     </div>
-    <div class="my-1" @click="TODO.addTaskCheckListCounterItems(id_item - 1)">
+    <div class="my-1" @click="TODO.addTCL(id_item - 1)">
       <p
         class="text-sm hover:bg-slate-100 hover:rounded-lg text-slate-500 cursor-pointer p-1"
       >
@@ -130,6 +128,9 @@
     <p class="text-xs text-gray-500 dark:text-gray-500">
       Created at {{ TODO.todo.checklist.list[id_item - 1].date }}
     </p>
+  </div>
+  <div>
+    {{ TODO.todo.checklist.list }}
   </div>
 </template>
 

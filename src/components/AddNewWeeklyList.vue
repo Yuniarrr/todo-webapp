@@ -1,14 +1,14 @@
 <template>
   <div
     class="my-2 rounded-lg border-2 px-3 py-1 text-base cursor-pointer hover:bg-sky-100"
-    @dblclick="TODO.goToDetailTaskList(id_item)"
     v-if="id_item != null"
+    @dblclick="TODO.gotoDetailWeek(id_item)"
   >
     <div class="flex justify-between">
-      <div>{{ message }} || {{ id_item }}</div>
+      <div>{{ message }} || {{ id_item }} || {{ day }}</div>
       <div
         class="flex items-center hover:bg-slate-200 hover:rounded-lg"
-        @click="TODO.deleteTaskList(id_item)"
+        @click="TODO.deleteWLI(id_item, day)"
       >
         <svg
           class="w-4 h-4"
@@ -45,6 +45,10 @@ export default {
       required: true,
     },
     message: {
+      type: String,
+      required: true,
+    },
+    day: {
       type: String,
       required: true,
     },
