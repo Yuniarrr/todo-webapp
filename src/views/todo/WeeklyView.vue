@@ -27,7 +27,7 @@
             :key="index"
           >
             <AddNewWeeklyList
-              :id_item="item.id"
+              :id_item="index"
               :message="item.message"
               :day="monday"
             />
@@ -51,7 +51,7 @@
             :key="index"
           >
             <AddNewWeeklyList
-              :id_item="item.id"
+              :id_item="index"
               :message="item.message"
               :day="tuesday"
             />
@@ -75,7 +75,7 @@
             :key="index"
           >
             <AddNewWeeklyList
-              :id_item="item.id"
+              :id_item="index"
               :message="item.message"
               :day="wednesday"
             />
@@ -99,7 +99,7 @@
             :key="index"
           >
             <AddNewWeeklyList
-              :id_item="item.id"
+              :id_item="index"
               :message="item.message"
               :day="thursday"
             />
@@ -125,7 +125,7 @@
             :key="index"
           >
             <AddNewWeeklyList
-              :id_item="item.id"
+              :id_item="index"
               :message="item.message"
               :day="friday"
             />
@@ -149,7 +149,7 @@
             :key="index"
           >
             <AddNewWeeklyList
-              :id_item="item.id"
+              :id_item="index"
               :message="item.message"
               :day="saturday"
             />
@@ -173,7 +173,7 @@
             :key="index"
           >
             <AddNewWeeklyList
-              :id_item="item.id"
+              :id_item="index"
               :message="item.message"
               :day="sunday"
             />

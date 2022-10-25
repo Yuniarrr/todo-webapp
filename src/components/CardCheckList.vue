@@ -13,12 +13,12 @@
         v-if="TODO.todo.checklist.list[id_item - 1].show_title == true"
         @keydown.enter="
           (TODO.todo.checklist.list[id_item - 1].show_title = false),
-            TODO.updateTitleTCL(id_item - 1)
+            TODO.updateTitleCL(id_item - 1)
         "
         @focusout="TODO.todo.checklist.list[id_item - 1].show_title = false"
       />
       <p
-        @dblclick="TODO.editTitleTCL(id_item - 1)"
+        @dblclick="TODO.showTitleCL(id_item - 1)"
         v-if="TODO.todo.checklist.list[id_item - 1].show_title == false"
         class="text-xl w-full font-medium border-b-4 flex items-center dark:border-b-4 dark:border-slate-500 cursor-pointer"
       >
@@ -62,7 +62,7 @@
         @click="showListCategory = !showListCategory"
         @dblclick="
           (showCategory = false && showListCategory == false),
-            TODO.updateCategoryTCL(id_item - 1)
+            TODO.updateCategoryCL(id_item - 1)
         "
       >
         <button
@@ -121,19 +121,16 @@
     >
       <AddNewCheckList :id_item="id_item - 1" :id_new_task="index - 1" />
     </div>
-    <div class="my-1" @click="TODO.addTCL(id_item - 1)">
+    <div class="my-1" @click="TODO.addSubCheckList(id_item - 1)">
       <p
         class="text-sm hover:bg-slate-100 hover:rounded-lg text-slate-500 cursor-pointer p-1"
       >
-        + New {{ TODO.todo.checklist.list[id_item - 1].counter_items }}
+        + New
       </p>
     </div>
     <p class="text-xs text-gray-500 dark:text-gray-500">
       Created at {{ TODO.todo.checklist.list[id_item - 1].date }}
     </p>
-  </div>
-  <div>
-    {{ TODO.todo.checklist.list }}
   </div>
 </template>
 

@@ -3,7 +3,7 @@
     <HeaderMenu :title="CheckList" />
     <button
       class="text-xl font-medium hover:bg-slate-200 hover:rounded-lg p-2 mb-1 dark:bg-slate-200 dark:rounded-lg dark:hover:bg-slate-300 dark:border-gray-200"
-      @click="TODO.addTaskCheckListCounter()"
+      @click="TODO.addCheckList()"
     >
       + New Task
     </button>

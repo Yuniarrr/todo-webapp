@@ -3,7 +3,7 @@
     <div class="flex flex-row">
       <h1
         class="text-3xl mb-3 font-medium dark:text-white hover:underline hover:cursor-pointer"
-        @click="goToTaskList()"
+        @click="TODO.gotoWeeklyList()"
       >
         Task List
       </h1>
@@ -72,28 +72,26 @@
           class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-300"
           >Category</label
         >
-        <div
-          v-for="(item, index) in TODO.category"
-          :key="index"
-          class="flex flex-wrap"
-        >
-          <div class="flex items-start mx-2">
-            <div class="flex items-center my-1">
-              <input
-                :id="item.name"
-                :name="item.name"
-                v-model="weekly[id_item].category"
-                type="checkbox"
-                :value="item.name"
-                :checked="weekly[id_item].category.includes(item.name)"
-                class="flex items-center w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-                required
-              />
-              <label
-                :for="item.name"
-                class="flex items-center justify-center ml-2 text-sm text-gray-900 dark:text-gray-300"
-                ><i>{{ item.name }}</i></label
-              >
+        <div class="flex flex-wrap">
+          <div v-for="(item, index) in TODO.category" :key="index">
+            <div class="flex items-start mx-2">
+              <div class="flex items-center my-1">
+                <input
+                  :id="item.name"
+                  :name="item.name"
+                  v-model="weekly[id_item].category"
+                  type="checkbox"
+                  :value="item.name"
+                  :checked="weekly[id_item].category.includes(item.name)"
+                  class="flex items-center w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                  required
+                />
+                <label
+                  :for="item.name"
+                  class="flex items-center justify-center ml-2 text-sm text-gray-900 dark:text-gray-300"
+                  ><i>{{ item.name }}</i></label
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -136,14 +134,12 @@ export default {
   },
   created() {
     this.changeWeekly();
-    console.log(this.weekly);
   },
   methods: {
     goToWeeklyList() {
       this.$router.push("/weekly-list");
     },
     changeWeekly() {
-      console.log(this.day);
       if (this.day == "Monday") {
         this.weekly = this.TODO.todo.weekly.list_day.monday;
       } else if (this.day == "Tuesday") {

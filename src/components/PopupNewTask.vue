@@ -165,10 +165,14 @@
             class="col-span-1 text-sm font-medium text-gray-900 dark:text-black my-auto"
             >Description</label
           >
-          <div class="col-span-6">
-            <div v-for="(item, index) in TODO.category" :key="index">
-              <div class="flex items-start">
-                <div class="flex items-center">
+          <div class="col-span-6 flex flex-wrap flex-row my-1">
+            <div
+              v-for="(item, index) in TODO.category"
+              :key="index"
+              class="mt-1"
+            >
+              <div class="flex">
+                <div class="flex items-center mr-4">
                   <input
                     :id="item.name"
                     v-model="TODO.todo.task_list.category"

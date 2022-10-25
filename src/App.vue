@@ -17,7 +17,7 @@
       "
     ></div>
   </div>
-  <div class="left-0 bottom-0 top-0 right-0 dark:bg-gray-700 w-screen h-screen">
+  <div class="left-0 bottom-0 top-0 right-0 dark:bg-gray-700 h-screen">
     <nav
       class="w-full top-0 bg-gray-50 dark:bg-gray-700 shadow-lg shadow-slate-300 dark:shadow-gray-800"
     >
@@ -48,33 +48,23 @@
               ></path>
             </svg>
           </button>
-          <ul class="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
-            <li>
-              <RouterLink
-                to="/"
-                class="text-gray-900 dark:text-white hover:underline"
-                aria-current="page"
-                >Home</RouterLink
-              >
-            </li>
-            <li>
-              <RouterLink
-                to="/about"
-                class="text-gray-900 dark:text-white hover:underline"
-                >About</RouterLink
-              >
-            </li>
-            <li>
-              <a href="#" class="text-gray-900 dark:text-white hover:underline"
-                >Team</a
-              >
-            </li>
-            <li>
-              <a href="#" class="text-gray-900 dark:text-white hover:underline"
-                >Features</a
-              >
-            </li>
-          </ul>
+          <div>
+            <label
+              for="name"
+              class="text-lg font-medium"
+              @dblclick="show_name = true"
+              v-if="show_name == false"
+              >Hi, {{ TODO.name }}</label
+            >
+            <input
+              type="text"
+              id="name"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              v-model="TODO.name"
+              @keydown.enter="TODO.updateName(), (show_name = false)"
+              v-if="show_name"
+            />
+          </div>
         </div>
         <div class="flex justify-end relative">
           <button
@@ -139,7 +129,6 @@
 </template>
 
 <script>
-import { RouterLink, RouterView } from "vue-router";
 import { useToDo } from "./stores/index.js";
 import Menu from "./components/Menu.vue";
 import PopupNewTask from "./components/PopupNewTask.vue";
@@ -150,6 +139,7 @@ export default {
   data() {
     return {
       isDarkMode: false,
+      show_name: false,
     };
   },
   setup() {
@@ -167,22 +157,22 @@ export default {
   mounted() {
     this.TODO.getCheckList();
     this.TODO.getTaskList();
-    this.TODO.getToDoTaskList();
-    this.TODO.getDoingTaskList();
-    this.TODO.getDoneTaskList();
-    this.TODO.getOtherTaskList();
     this.TODO.getWeeklyList();
+    this.TODO.getName();
   },
   methods: {
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
+      this.isDarkMode = localStorage.getItem("darkMode");
       if (this.isDarkMode) {
         document.documentElement.classList.add("dark");
       } else {
         document.documentElement.classList.remove("dark");
       }
+      localStorage.setItem("darkMode", this.isDarkMode);
     },
   },
+  watch: {},
 };
 </script>
 

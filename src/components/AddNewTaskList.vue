@@ -1,11 +1,10 @@
 <template>
   <div
     class="my-2 rounded-lg border-2 px-3 py-1 text-base cursor-pointer hover:bg-sky-100"
-    @dblclick="TODO.goToDetailTaskList(id_item)"
-    v-if="id_item != null"
+    @dblclick="TODO.goToDetailTaskList(id_item, status)"
   >
     <div class="flex justify-between">
-      <div>{{ message }} || {{ id_item }}</div>
+      <div>{{ message }}</div>
       <div
         class="flex items-center hover:bg-slate-200 hover:rounded-lg"
         @click="TODO.deleteTaskList(id_item)"
@@ -45,6 +44,10 @@ export default {
       required: true,
     },
     message: {
+      type: String,
+      required: true,
+    },
+    status: {
       type: String,
       required: true,
     },

@@ -6,7 +6,6 @@
       <div class="mb-2 flex pl-3 text-xl dark:text-white">ToDo List WebApp</div>
       <div class="flex flex-col">
         <RouterLink
-          @click="TODO.toggleActive('home')"
           :class="
             TODO.settings.isActive.home == true ? 'bg-blue-200 font-medium' : ''
           "
@@ -16,7 +15,6 @@
           >Home</RouterLink
         >
         <RouterLink
-          @click="TODO.toggleActive('category')"
           :class="
             TODO.settings.isActive.category == true
               ? 'bg-blue-200 font-medium'
@@ -28,7 +26,6 @@
           >Category</RouterLink
         >
         <RouterLink
-          @click="TODO.toggleActive('check_list')"
           :class="
             TODO.settings.isActive.check_list == true
               ? 'bg-blue-200 font-medium'
@@ -40,7 +37,6 @@
           >Check List</RouterLink
         >
         <RouterLink
-          @click="TODO.toggleActive('task_list')"
           :class="
             TODO.settings.isActive.task_list == true
               ? 'bg-blue-200 font-medium'
@@ -52,7 +48,6 @@
           >Task List</RouterLink
         >
         <RouterLink
-          @click="TODO.toggleActive('weekly_list')"
           :class="
             TODO.settings.isActive.weekly_list == true
               ? 'bg-blue-200 font-medium'
@@ -64,21 +59,6 @@
           >Weekly List</RouterLink
         >
       </div>
-      <!-- for toogle -->
-      <!-- <div class="mt-1 pl-3">
-        <div>
-          <label
-            for="rotate-field"
-            class="relative inline-flex cursor-pointer items-center"
-          >
-            <input type="checkbox" id="rotate-field" class="peer sr-only" />
-            <div class="toggle peer"></div>
-            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >Rotate Field</span
-            >
-          </label>
-        </div>
-      </div> -->
     </div>
     <div
       class="col-span-10 row-span-full bg-black opacity-30"
@@ -93,17 +73,55 @@ import { useToDo } from "../stores/index.js";
 export default {
   created() {},
   data() {
-    return {};
+    return {
+      route: this.$router,
+    };
   },
   props: {},
-  methods: {
-    checkRouter() {
-      console.log(this.$route.path);
-    },
-  },
+  methods: {},
   setup() {
     const TODO = useToDo();
     return { TODO };
+  },
+  created() {
+    this.route = this.$router.currentRoute._value.path;
+    this.isActive(this.route);
+  },
+  methods: {
+    isActive(route) {
+      let name;
+      if (route == "/") {
+        name = "home";
+      } else if (route == "/category" || route.slice(0, 10) == "/category/") {
+        name = "category";
+      } else if (
+        route == "/check-list" ||
+        route.slice(0, 12) == "/check-list/"
+      ) {
+        name = "check_list";
+      } else if (route == "/task-list" || route.slice(0, 11) == "/task-list/") {
+        name = "task_list";
+      } else if (
+        route == "/weekly-list" ||
+        route.slice(0, 13) == "/weekly-list/"
+      ) {
+        name = "weekly_list";
+      }
+      let obj = this.TODO.settings.isActive;
+      for (let key in obj) {
+        if (key === name) {
+          obj[key] = true;
+        } else {
+          obj[key] = false;
+        }
+      }
+    },
+  },
+  watch: {
+    $route() {
+      let route = this.$router.currentRoute._value.path;
+      this.isActive(route);
+    },
   },
 };
 </script>

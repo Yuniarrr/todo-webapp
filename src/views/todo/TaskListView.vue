@@ -22,8 +22,11 @@
             No Task
           </div>
           <div v-for="(item, index) in TODO.todo.task_list.todo" :key="index">
-            <AddNewTaskList :id_item="item.id" :message="item.message" />
-            <!-- {{ item.id }} -->
+            <AddNewTaskList
+              :id_item="item.id"
+              :message="item.message"
+              :status="item.status"
+            />
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit dark:bg-slate-200">
@@ -39,8 +42,11 @@
             No Task
           </div>
           <div v-for="(item, index) in TODO.todo.task_list.doing" :key="index">
-            <AddNewTaskList :id_item="item.id" :message="item.message" />
-            <!-- {{ item.id }} -->
+            <AddNewTaskList
+              :id_item="item.id"
+              :message="item.message"
+              :status="item.status"
+            />
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit dark:bg-slate-200">
@@ -56,8 +62,11 @@
             No Task
           </div>
           <div v-for="(item, index) in TODO.todo.task_list.done" :key="index">
-            <AddNewTaskList :id_item="item.id" :message="item.message" />
-            <!-- {{ item.id }} -->
+            <AddNewTaskList
+              :id_item="item.id"
+              :message="item.message"
+              :status="item.status"
+            />
           </div>
         </div>
         <div class="shadow-md rounded-md p-2 h-fit dark:bg-slate-200">
@@ -73,25 +82,14 @@
             No Task
           </div>
           <div v-for="(item, index) in TODO.todo.task_list.other" :key="index">
-            <AddNewTaskList :id_item="item.id" :message="item.message" />
-            <!-- {{ item.id }} -->
+            <AddNewTaskList
+              :id_item="item.id"
+              :message="item.message"
+              :status="item.status"
+            />
           </div>
         </div>
       </div>
-    </div>
-    <div class="mt-10">
-      <h1>Counter</h1>
-      {{ TODO.todo.task_list.counter }}
-      <h1>ALL DATA</h1>
-      {{ TODO.todo.task_list.list }}
-      <h1>TODO</h1>
-      {{ TODO.todo.task_list.todo }}
-      <h1>Doing</h1>
-      {{ TODO.todo.task_list.doing }}
-      <h1>Done</h1>
-      {{ TODO.todo.task_list.done }}
-      <h1>Other</h1>
-      {{ TODO.todo.task_list.other }}
     </div>
   </div>
 </template>
@@ -125,34 +123,6 @@ export default {
     HeaderMenu,
     AddNewTaskList,
   },
-  // watch: {
-  //   "TODO.todo.task_list.list": {
-  //     handler() {
-  //       let self = this.TODO.todo.task_list;
-  //       let list = self.list;
-  //       for (let i = 0; i < list.length; i++) {
-  //         if (list[i].status == "todo") {
-  //           if (self.todo.includes(list[i].id) == false) {
-  //             self.todo.push(list[i].id);
-  //           }
-  //         } else if (list[i].status == "doing") {
-  //           if (self.doing.includes(list[i].id) == false) {
-  //             self.doing.push(list[i].id);
-  //           }
-  //         } else if (list[i].status == "done") {
-  //           if (self.done.includes(list[i].id) == false) {
-  //             self.done.push(list[i].id);
-  //           }
-  //         } else if (list[i].status == "other") {
-  //           if (self.other.includes(list[i].id) == false) {
-  //             self.other.push(list[i].id);
-  //           }
-  //         }
-  //         console.log(this.todo);
-  //       }
-  //     },
-  //     deep: true,
-  //   },
-  // },
+  created() {},
 };
 </script>

@@ -5,10 +5,10 @@
     @dblclick="TODO.gotoDetailWeek(id_item, day)"
   >
     <div class="flex justify-between">
-      <div>{{ message }} || {{ id_item }} || {{ day }}</div>
+      <div>{{ message }}</div>
       <div
         class="flex items-center hover:bg-slate-200 hover:rounded-lg"
-        @click="TODO.deleteWLI(id_item, day)"
+        @click="TODO.deleteWeeklyList(id_item, day)"
       >
         <svg
           class="w-4 h-4"
