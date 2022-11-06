@@ -66,7 +66,7 @@
             />
           </div>
         </div>
-        <div class="flex justify-end relative">
+        <!-- <div class="flex justify-end relative">
           <button
             @click="toggleDarkMode()"
             v-if="!isDarkMode"
@@ -116,7 +116,7 @@
               ></path>
             </svg>
           </button>
-        </div>
+        </div> -->
       </div>
     </nav>
     <div v-if="TODO.settings.show_menu">
